@@ -1,274 +1,168 @@
-# Unified Enterprise Dashboard (SPA)
+# CodeStrikes — Capstone Project
 
-A high-performance, cohesive **Single Page Application (SPA)** built using pure **HTML5, CSS3, and Vanilla Modern JavaScript (ES6+ Modules)** without any external libraries or frameworks.
+**On Job Training Capstone | Track A: The "Dev Agency" Distributed Workflow**
 
-The platform features a centralized, responsive layout shell managing six core data-driven software modules under a **Track B Single Page Architecture**.
+> Where an idea turns into a project. Help your startups, business, and ideas grow and solve real problems with the power of code.
+
+This repository hosts the **Team Agency Portfolio** — the central landing page for the CodeStrikes team, linking out to the five other applications built for this capstone.
 
 ---
 
-# 📂 Project Architecture
+## 📋 Table of Contents
 
-```text
-UNIFIED-ENTERPRISE-DASHBOARD/
-├── css/
-│   ├── views/
-│   │   ├── kanban.css       # Isolated layout and drag states for the Kanban board
-│   │   ├── portfolio.css    # Responsive grid styles for agency team cards
-│   │   └── quiz.css         # Visual feedback states (success/error color systems)
-│   ├── main.css             # Global reset, foundational typography, and layout shell
-│   └── themes.css           # Core Light/Dark mode configuration variables
-│
+- [About the Project](#about-the-project)
+- [Live Demo](#live-demo)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Features](#features)
+- [The Six Apps](#the-six-apps)
+- [Execution Track](#execution-track)
+- [Team](#team)
+- [Git Workflow](#git-workflow)
+- [Known Issues / TODOs](#known-issues--todos)
+- [Evaluation Criteria](#evaluation-criteria)
+- [License](#license)
+
+---
+
+## About the Project
+
+This is the **Team Agency Portfolio** — a data-driven landing page that introduces the CodeStrikes team and showcases all six capstone applications. Built with **pure HTML, CSS, and JavaScript** (no frameworks), it is fully responsive from 320px (mobile) up to desktop.
+
+**Sections included:**
+- Hero with animated illustration
+- Services overview
+- Filterable project showcase
+- Skills / progress bars (animate in on scroll)
+- Team stats
+- Team member cards (with GitHub links)
+- Contact form
+- Footer with newsletter signup
+
+---
+
+## Live Demo
+
+🔗 _Add your deployed link here (e.g. GitHub Pages, Netlify, Vercel)_
+
+---
+
+## Tech Stack
+
+- **HTML5** — semantic structure
+- **CSS3** — custom properties (CSS variables), Grid, Flexbox, keyframe animations
+- **Vanilla JavaScript** — hamburger menu, project filtering, scroll-spy nav, scroll-triggered skill bar animation
+- **Google Fonts** — Poppins (display) + Inter (body)
+
+No build tools, frameworks, or external JS libraries required.
+
+---
+
+## Project Structure
+
+```
+.
+├── index.html          # Main landing page markup
 ├── js/
-│   ├── components/
-│   │   ├── contactForm.js   # Portfolio regex pattern matching and validation logic
-│   │   └── dragDrop.js      # Native HTML5 Drag and Drop event orchestration
-│   ├── api.js               # Native fetch infrastructure handling async/await protocols
-│   ├── app.js               # Central bootstrap script and orchestration entry point
-│   ├── router.js            # Client-side router engine (History/Hash state mutations)
-│   ├── state.js             # Decoupled state store with automated localStorage sync
-│   └── utils.js             # Functional data filters and mathematical engines (.reduce/.filter)
-│
-├── index.html               # Immutable SPA DOM mounting node wrapper
-└── README.md                # Project architecture and technical specification log
+│   └── app.js          # Hamburger menu, filter tabs, scroll-spy, skill bar animation
+├── src/
+│   └── css/
+│       └── styles.css  # All styling (theme tokens, layout, responsive rules)
+└── README.md
 ```
 
----
-
-# 👥 Collective Layer Ownership Matrix
-
-To satisfy the rigorous constraints of the Capstone program—where no member may work exclusively on presentation layers, every engineer must defend core script logic, and code will be evaluated via random cross-examination—this project utilizes a **Horizontal Architectural Layer Allocation**.
-
-## Member 1: Router & Page Lifecycle (`js/router.js`)
-
-**Scope:**
-
-* Manages client-side routing
-* Intercepts hash/URL changes
-* Drives clean view unmounting protocols
-* Safeguards structural integrity across views
-
-## Member 2: State Engine & Storage (`js/state.js`)
-
-**Scope:**
-
-* Maintains the single source of truth runtime state engine
-* Tracks deep objects
-* Manages serialization pipelines with Local Storage
-
-## Member 3: CSS Architecture & Themes (`css/`)
-
-**Scope:**
-
-* Controls responsive layout scaling (320px → Desktop)
-* Enforces style isolation through explicit component scoping
-* Implements global theme toggling
-
-## Member 4: Async API Infrastructure (`js/api.js`)
-
-**Scope:**
-
-* Programs native network pipelines using async/await
-* Handles loading feedback indicators
-* Creates API error-defense mechanisms
-
-## Member 5: Data Analytics & Logic (`js/utils.js`)
-
-**Scope:**
-
-* Implements structural transformations using:
-
-  * `.filter()`
-  * `.reduce()`
-* Handles schema mapping
-* Generates statistical visualizations
-
-## Member 6: User Interaction & Components (`js/components/`)
-
-**Scope:**
-
-* Standardizes input regex systems
-* Controls focus states
-* Maps interactive alerts
-* Orchestrates native interaction interfaces
+> **Note:** `index.html` loads the stylesheet from `/src/css/styles.css` and the script from `js/app.js`. Keep these paths in sync if you reorganize folders.
 
 ---
 
-# ⚙️ Core Technical Specifications
+## Getting Started
 
-## 1. Zero-Framework Routing & State Persistence
+No installation or build step needed — this is a static site.
 
-The custom client-side router matches path states without browser reloads.
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/<org>/codestrikes-portfolio.git
+   cd codestrikes-portfolio
+   ```
 
-The dashboard intercepts transitions to save memory matrices inside the global store module before container cleanup, preserving active visual conditions (such as open tasks or quiz states) perfectly upon return.
+2. **Open it**
+   - Easiest: open `index.html` directly in your browser, **or**
+   - Recommended: serve it locally so relative paths behave correctly:
+     ```bash
+     # Using VS Code Live Server extension, or:
+     npx serve .
+     # or
+     python3 -m http.server 5500
+     ```
+   Then visit `http://localhost:5500`.
 
----
-
-## 2. Isolated CSS Scope Architecture
-
-Styles inside `css/views/` utilize strict structural scoping via explicit data-attribute bindings.
-
-Example:
-
-```css
-[data-view="kanban"] .card
-```
-
-### Benefits
-
-* Prevents style leakage between modules
-* Ensures Kanban drag surfaces never affect other layouts
-* Supports scalable component isolation
-* Uses global variables from `themes.css` for instant appearance switching
-
-Theme preferences are persisted through storage keys and restored automatically.
+3. **Make changes** to `index.html`, `src/css/styles.css`, or `js/app.js` and refresh the browser — no build step required.
 
 ---
 
-## 3. Integrated Sub-Application Specifications
+## Features
 
-### Agency Portfolio
-
-* Dynamic rendering of a 6-member registry
-* Powered by a centralized state object
-* Regex-based form validation
-* Mock asynchronous submission timeouts
-
-### Interactive Quiz
-
-* Dynamic question progression
-* Green/Red answer confirmation
-* Percentage-based performance analytics
-
-### Expense Tracker
-
-* Complete Atomic CRUD functionality
-* Real-time balance calculations
-* Uses:
-
-  * `.filter()`
-  * `.reduce()`
-
-### Live News Feed
-
-* External API integration
-* Async/Await request handling
-* Loading indicators and graceful error states
-
-### GitHub Explorer
-
-* Parallel multi-endpoint API compilation
-* Language statistics visualization
-* Pure CSS proportional charts
-* API rate-limit awareness
-
-### Kanban Task Board
-
-* Native HTML5 Drag & Drop implementation
-* Real-time task movement
-* Nested array state synchronization
+- **Portfolio filtering** — switch between All / Web Development / App-Logic / UI-UX project categories without a page reload
+- **Scroll-spy navigation** — the active nav link updates automatically as you scroll through sections
+- **Scroll-triggered skill bars** — progress bars animate into view only once the Skills section is visible, instead of on page load
+- **Fully responsive** — tested down to 320px width, through tablet, up to desktop
 
 ---
 
-# 🔀 Git Workflow & Code Quality Protocols
-
-To maximize scores under:
-
-* **Git Flow & Collaboration (35%)**
-* **Code Architecture (40%)**
-
-the team follows strict engineering standards.
-
-## Protected Core Branches
-
-Direct pushes to the `main` branch are prohibited.
-
-## Layer-Based Branching
-
-Assignments map to architectural layers instead of separate applications.
-
-Examples:
-
-```text
-feature/state-serialization
-feature/native-drag-drop
-feature/router-lifecycle
-```
-
-## Mandatory Code Reviews
-
-Every merge into the main branch requires:
-
-1. Pull Request creation
-2. Peer review approval
-3. Quality validation and sign-off
-
-## Cross-Examination Readiness
-
-The team conducts mock defense sessions where members explain architectural decisions from modules they did not personally implement.
-
-This ensures:
-
-* Team-wide understanding
-* Shared ownership
-* Strong technical defense capability
+## The Six Apps
+ 
+| # | App | Focus | Status |
+|---|-----|-------|--------|
+| 1 | **Team Agency Portfolio** *(this repo)* | DOM & Layout | ✅ Done |
+| 2 | Interactive Quiz App | State & Logic | ✅ Done |
+| 3 | Expense Tracker | CRUD & localStorage | ✅ Done |
+| 4 | Live News Feed | Async API Integration | ✅ Done |
+| 5 | GitHub Developer Explorer | Multi-Endpoint APIs | ✅ Done |
+| 6 | Kanban Task Board | Drag & Drop & Complex State | ✅ Done |
+ 
+> Update this table as each app is built and linked. Each app should live in its own page/repo per Track A.
 
 ---
 
-# 🛠️ Local Development Setup
+## Execution Track
 
-## Clone the Repository
+**Track A — The "Dev Agency" Distributed Workflow**
 
-```bash
-git clone https://github.com/your-org/unified-enterprise-dashboard.git
-```
-
-## Navigate to the Project Folder
-
-```bash
-cd unified-enterprise-dashboard
-```
-
-## Launch a Local Development Server
-
-Using Python:
-
-```bash
-python -m http.server 8080
-```
-
-## Open in Browser
-
-```text
-http://localhost:8080
-```
-
-The application will now be available locally for development and testing.
+- This portfolio links out to the other five apps, each hosted on a separate page/repository.
+- Git workflow: `main` branch is protected; all work happens on feature branches.
+- Every PR requires at least one peer review before merging.
+- Features are distributed across the team via the Kanban board (e.g., one member owns the GitHub API fetch logic, another owns the UI rendering).
 
 ---
 
-# 🚀 Technology Stack
+## Team
 
-* HTML5
-* CSS3
-* JavaScript (ES6+ Modules)
-* Local Storage API
-* Fetch API
-* Async/Await
-* HTML5 Drag & Drop API
-* Hash/History Routing
+| Name | Role | GitHub |
+|------|------|--------|
+| Bhavya Kumar | Frontend Developer | [@bhavyaku11](https://github.com/bhavyaku11) |
+| Dhruv Takale | State & Logic | [@Mr-robot365](https://github.com/Mr-robot365) |
+| Nikita | UI/UX Designer | _TODO: add GitHub link_ |
+| Safia Anjum | Frontend Developer | [@Safiaanjum01](https://github.com/Safiaanjum01) |
+| Samarth Swami | Frontend Lead | [@Sam-X-Dev](https://github.com/Sam-X-Dev) |
+| Shreyansh | Frontend Developer | [@SHREYYY3](https://github.com/SHREYYY3) |
+
+> No team member works exclusively on HTML/CSS — every member must also defend JavaScript logic during the viva.
 
 ---
 
-# 📌 Key Architectural Highlights
+## Git Workflow
 
-* Zero Framework Dependency
-* Single Page Application Architecture
-* Centralized State Management
-* Persistent Local Storage Synchronization
-* Modular ES6 Codebase
-* Responsive Design System
-* Dark/Light Theme Support
-* Native API Integration
-* Strict CSS Isolation
-* Git Flow Collaboration Model
-* Component-Based JavaScript Structure
+1. **Branch naming:** `feature/<short-description>` (e.g. `feature/kanban-drag-drop`)
+2. **Commit messages:** clear and meaningful (e.g. `Add expense filter logic`, not `fix stuff`)
+3. **Pull Requests:**
+   - Open a PR against `main` when a feature is ready
+   - At least one teammate must review and approve before merging
+   - Be ready to explain any PR you authored during the viva
+4. **Conflicts:** if you hit a merge conflict, resolve it locally, test thoroughly, and document what happened — the team will present one such scenario during evaluation.
+
+---
+
+## License
+
+This project was built for educational purposes as part of an On Job Training Capstone program. Feel free to fork and adapt for your own learning.
