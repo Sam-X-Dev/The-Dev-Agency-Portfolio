@@ -1,0 +1,320 @@
+/* =====================================================
+   GLOBAL RESET
+   Removes default browser margin/padding and makes
+   box-sizing predictable across all elements.
+===================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =====================================================
+   DESIGN TOKENS (CSS custom properties)
+   Single source of truth for the white + blue color
+   theme, spacing radius, and shadow used everywhere below.
+   Change a value here to re-theme the whole site.
+===================================================== */
+:root {
+  --blue: #1a6fe8;       /* primary brand blue — buttons, links, accents */
+  --blue-mid: #4b9eff;   /* lighter blue — gradients (blob, progress bars) */
+  --blue-light: #ebf3ff; /* pale blue — icon backgrounds, tags, badges */
+  --blue-pale: #f0f6ff;  /* near-white blue — section backgrounds */
+  --navy: #0d1b3e;       /* dark text color (headings, body text) */
+  --gray: #64748b;       /* muted text color (paragraphs, labels) */
+  --gray-light: #f5f8ff; /* unused currently — reserved alt background */
+  --white: #ffffff;
+  --border: #dce8fa;     /* default border color for cards/inputs */
+  --radius: 12px;        /* standard corner radius for cards */
+  --shadow: 0 4px 24px rgba(26, 111, 232, 0.1); /* soft blue drop shadow */
+}
+
+html {
+  scroll-behavior: smooth; /* smooth-scrolls to #anchors (nav links, CTAs) */
+}
+body {
+  font-family: "Inter", sans-serif; /* body/paragraph font */
+  color: var(--navy);
+  background: var(--white);
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+nav {
+  position: sticky;   /* stays pinned to top while scrolling */
+  top: 0;
+  z-index: 100;       /* sits above hero/sections */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo | links | CTA spread across row */
+  padding: 0 5vw;
+  height: 68px;
+  background: rgba(255, 255, 255, 0.92); /* slightly transparent for blur effect */
+  backdrop-filter: blur(10px);           /* frosted-glass look under nav */
+  border-bottom: 1px solid var(--border);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Poppins", sans-serif; /* display font for brand name */
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--navy);
+  text-decoration: none;
+}
+.logo-icon {
+  width: 36px;
+  height: 36px;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--gray);
+  transition: color 0.2s;
+}
+/* Active link (set by scroll-spy logic in app.js) + hover state */
+.nav-links a.active,
+.nav-links a:hover {
+  color: var(--blue);
+}
+
+/* Shared button base — used by nav CTA, hero CTAs, contact form, etc. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  border: none;
+}
+/* Solid blue button — primary actions ("See Projects", "Send Message") */
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #1460cc; /* darker blue on hover */
+  transform: translateY(-1px); /* subtle lift effect */
+  box-shadow: 0 4px 16px rgba(26, 111, 232, 0.35);
+}
+/* Outlined button — secondary actions ("Meet the Team") */
+.btn-outline {
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--border);
+}
+.btn-outline:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+/* =====================================================
+   HERO SECTION
+   Two-column grid (text | visual). The animated "blob"
+   shape and floating badges are the signature visual element.
+===================================================== */
+#hero {
+  min-height: calc(100vh - 68px); /* fills viewport minus navbar height */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* equal split: text | visual */
+  align-items: center;
+  padding: 0 5vw;
+  background: linear-gradient(135deg, #f0f6ff 0%, #ffffff 60%);
+  position: relative; /* needed so .deco chips can be absolutely positioned */
+  overflow: hidden;    /* clips the glow circle below from overflowing */
+}
+/* Soft radial glow in the top-right corner, purely decorative */
+#hero::before {
+  content: "";
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(75, 158, 255, 0.18) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none; /* lets clicks pass through to content beneath */
+}
+.hero-text {
+  z-index: 1; /* keeps text above the ::before glow */
+}
+/* Small rounded "pill" label above the headline */
+.hero-eyebrow {
+  display: inline-block;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 1.2rem;
+}
+.hero-text h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem); /* responsive: scales with viewport, capped both ends */
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+.hero-text h1 span {
+  color: var(--blue); /* highlights the team name within the headline */
+}
+.hero-sub {
+  font-size: 1rem;
+  color: var(--gray);
+  max-width: 440px; /* keeps line length readable */
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  border-left: 3px solid var(--blue); /* quote-style accent bar */
+  padding-left: 14px;
+}
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap; /* stacks buttons on very narrow screens */
+}
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+} 
+
+/* The animated blob shape behind the floating badges.
+   border-radius percentages create an organic (non-circular) shape,
+   and the keyframes morph it slowly between two states. */
+.hero-blob {
+  width: clamp(300px, 42vw, 520px);
+  height: clamp(300px, 42vw, 520px);
+  background: radial-gradient(circle at 40% 40%, #4b9eff, #1a6fe8 70%);
+  border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: morphBlob 6s ease-in-out infinite alternate;
+}
+@keyframes morphBlob {
+  from {
+    border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+  }
+  to {
+    border-radius: 40% 60% 45% 55% / 55% 45% 50% 50%;
+  }
+}
+/* Semi-transparent inner panel that holds the floating badges */
+.hero-blob-inner {
+  width: 88%;
+  height: 88%;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: inherit; /* matches the parent blob's current animated shape */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+/* Small white "status chip" cards (e.g. "All Tests Passing") that
+   bob up and down independently via staggered animation-delay below. */
+.float-badge {
+  background: white;
+  border-radius: 10px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--navy);
+  box-shadow: var(--shadow);
+  animation: floatUp 3s ease-in-out infinite alternate;
+}
+.float-badge .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+/* Each badge's status dot gets a different color (blue/green/orange) */
+.float-badge:nth-child(1) .dot {
+  background: var(--blue);
+}
+.float-badge:nth-child(2) .dot {
+  background: #22c55e; /* green = success */
+}
+.float-badge:nth-child(3) .dot {
+  background: #f59e0b; /* amber = in-progress/highlight */
+}
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}
+/* Stagger the float animation so badges don't move in sync */
+.float-badge:nth-child(2) {
+  animation-delay: 0.8s;
+}
+.float-badge:nth-child(3) {
+  animation-delay: 1.6s;
+}
+
+/* Decorative floating "code symbol" chips (</>, {}, []) scattered
+   around the hero — purely visual flair, positioned absolutely
+   relative to #hero, each with its own slow side-to-side animation. */
+.deco {
+  position: absolute;
+  background: var(--white);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--blue);
+  box-shadow: var(--shadow);
+  pointer-events: none; /* never blocks clicks on content beneath */
+}
+.deco-1 {
+  top: 15%;
+  left: 52%;
+  animation: floatSide 4s ease-in-out infinite alternate;
+}
+.deco-2 {
+  top: 35%;
+  right: 3%;
+  animation: floatSide 3.5s ease-in-out infinite alternate-reverse;
+}
+.deco-3 {
+  bottom: 20%;
+  left: 50%;
+  animation: floatSide 5s ease-in-out infinite alternate;
+}
+@keyframes floatSide {
+  from {
+    transform: translateX(0) rotate(-3deg);
+  }
+  to {
+    transform: translateX(10px) rotate(3deg);
+  }
+}
