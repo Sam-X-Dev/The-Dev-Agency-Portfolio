@@ -1,0 +1,594 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeStrikes — Your Dream, We Build</title>
+
+    <!-- Google Fonts: Poppins = headings/display text, Inter = body text -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- All styling lives in this external stylesheet -->
+    <link rel="stylesheet" href="/src/css/styles.css">
+  </head>
+  <body>
+
+    <!-- =====================================================
+         NAVBAR
+         Sticky top navigation: logo, nav links, CTA button.
+         Nav links always remain visible — they shrink/wrap on
+         small screens via CSS instead of using a mobile menu.
+    ===================================================== -->
+    <nav>
+      <!-- Logo: SVG icon (rounded square + arrow) + brand name -->
+      <a href="#" class="logo">
+        <svg
+          class="logo-icon"
+          viewBox="0 0 36 36"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="36" height="36" rx="8" fill="#1A6FE8" />
+          <path
+            d="M10 22L15 17L10 12"
+            stroke="white"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M18 22H26"
+            stroke="white"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
+        </svg>
+        CodeCraft
+      </a>
+
+      <!-- Nav links — always visible across all screen sizes -->
+      <ul class="nav-links">
+        <li><a href="#hero" class="active">Home</a></li>
+        <li><a href="#services">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- Primary CTA button, always visible -->
+      <a href="#portfolio" class="btn btn-primary">See Projects →</a>
+    </nav>
+
+
+    <!-- =====================================================
+         HERO SECTION
+         Two-column layout: text/CTA on the left, animated
+         "blob" illustration with floating badges on the right.
+         Decorative floating code-symbol chips (</>, {}, [])
+         are absolutely positioned around the section.
+    ===================================================== -->
+    <section id="hero">
+      <!-- Left column: headline, subtext, action buttons -->
+      <div class="hero-text">
+        <span class="hero-eyebrow">🚀 On Job Training — Capstone Project</span>
+        <h1>We are<br /><span>CodeStrikes</span><br />Team</h1>
+        <p class="hero-sub">
+          Where an idea turns into a project. We help your startups, business,
+          and ideas grow — and solve real problems with the power of code.
+        </p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn btn-primary">See Projects →</a>
+          <a href="#team" class="btn btn-outline">Meet the Team</a>
+        </div>
+      </div>
+
+      <!-- Right column: animated blob shape with 3 floating status badges -->
+      <div class="hero-visual">
+        <div class="hero-blob">
+          <div class="hero-blob-inner">
+            <div class="float-badge">
+              <span class="dot"></span> JavaScript ES2024
+            </div>
+            <div class="float-badge">
+              <span class="dot"></span> All Tests Passing
+            </div>
+            <div class="float-badge">
+              <span class="dot"></span> 5 Apps Shipped
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decorative floating icons — purely visual, no functional role -->
+      <div class="deco deco-1">&lt;/&gt;</div>
+      <div class="deco deco-2">{ }</div>
+      <div class="deco deco-3">[ ]</div>
+    </section>
+
+    <!-- =====================================================
+         SERVICES SECTION
+         Static 4-card grid describing what the team offers.
+         Edit card text/icons here if services change.
+    ===================================================== -->
+    <section id="services">
+      <div class="center">
+        <p class="section-label">What We Do</p>
+        <h2 class="section-title">
+          We Provide Best Solutions<br />For Your Business
+        </h2>
+        <div class="underline-accent" style="margin: 0.7rem auto 0"></div>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>UI/UX Design</h3>
+          <p>
+            Start with listening to your idea, research, make a wireframe, build
+            a prototype, finalizing the UI/UX.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🌐</div>
+          <h3>Web Development</h3>
+          <p>
+            Create a high-speed, modern, and responsive website and web
+            application for you with vanilla JS.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📱</div>
+          <h3>App Development</h3>
+          <p>
+            Cross-platform solutions that are easy to use and maintain, built
+            with modern JavaScript standards.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✏️</div>
+          <h3>Graphic Design</h3>
+          <p>
+            We provide all kinds of designs like logos, banners, social media
+            kits, and component systems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         PORTFOLIO / PROJECTS SECTION
+         Filterable project grid.
+         - Each .tab button calls setTab(this, 'category') (defined
+           in app.js) which toggles the "active" tab style and
+           shows/hides .project-card elements based on data-cat.
+         - Each .project-card MUST have a matching data-cat value
+           ("web" | "app" | "ui") or it won't filter correctly.
+         - "all" tab shows every card regardless of data-cat.
+    ===================================================== -->
+    <section id="portfolio">
+      <p class="section-label">Our Work</p>
+      <h2 class="section-title">Latest Projects That<br />Recently Done</h2>
+
+      <!-- Filter tab buttons — wired to setTab() in app.js -->
+      <div class="filter-tabs">
+        <button class="tab active" onclick="setTab(this, 'all')">
+          All Projects
+        </button>
+        <button class="tab" onclick="setTab(this, 'web')">
+          Web Development
+        </button>
+        <button class="tab" onclick="setTab(this, 'app')">App / Logic</button>
+        <button class="tab" onclick="setTab(this, 'ui')">UI/UX</button>
+      </div>
+
+      <!-- Project cards: data-cat drives the filter logic in app.js -->
+      <div class="projects-grid">
+        <!-- Web Dev: News Feed -->
+        <div class="project-card" data-cat="web">
+          <div class="project-thumb c1">🌐</div>
+          <div class="project-info">
+            <p class="project-cat">Web Development</p>
+            <h3>Live News Feed — Async API</h3>
+          </div>
+        </div>
+        <!-- Web Dev: GitHub Explorer -->
+        <div class="project-card" data-cat="web">
+          <div class="project-thumb c2">🐙</div>
+          <div class="project-info">
+            <p class="project-cat">Web Development</p>
+            <h3>GitHub Developer Explorer</h3>
+          </div>
+        </div>
+        <!-- App/Logic: Kanban Board -->
+        <div class="project-card" data-cat="app">
+          <div class="project-thumb c3">📋</div>
+          <div class="project-info">
+            <p class="project-cat">App / Logic</p>
+            <h3>Kanban Task Board — Drag &amp; Drop</h3>
+          </div>
+        </div>
+        <!-- App/Logic: Expense Tracker -->
+        <div class="project-card" data-cat="app">
+          <div class="project-thumb c4">💰</div>
+          <div class="project-info">
+            <p class="project-cat">App / Logic</p>
+            <h3>Expense Tracker — CRUD</h3>
+          </div>
+        </div>
+        <!-- UI/UX: Quiz App (inline style overrides the c1 thumb gradient) -->
+        <div class="project-card" data-cat="ui">
+          <div
+            class="project-thumb c1"
+            style="background: linear-gradient(135deg, #ede9fe, #c4b5fd)"
+          >
+            🧠
+          </div>
+          <div class="project-info">
+            <p class="project-cat">UI/UX</p>
+            <h3>Interactive Quiz App</h3>
+          </div>
+        </div>
+        <!-- UI/UX: Team Portfolio (inline style overrides the c2 thumb gradient) -->
+        <div class="project-card" data-cat="ui">
+          <div
+            class="project-thumb c2"
+            style="background: linear-gradient(135deg, #ffe4e6, #fecdd3)"
+          >
+            👥
+          </div>
+          <div class="project-info">
+            <p class="project-cat">UI/UX</p>
+            <h3>Team Agency Portfolio</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SKILLS SECTION
+         Two-column layout: descriptive text + CTA on the left,
+         animated progress bars on the right.
+         To change a percentage: update BOTH the <span class="skill-pct">
+         text AND the inline width:XX% on the matching .bar-fill div
+         (they are not linked automatically, so keep them in sync).
+    ===================================================== -->
+    <section id="skills">
+      <div class="skills-layout">
+        <!-- Left: copy + CTA -->
+        <div class="skills-text">
+          <p class="section-label">Our Expertise</p>
+          <h2 class="section-title">
+            Creative &amp; Professional<br /><span>Skills Experience</span>
+          </h2>
+          <p>
+            We are a team of 5 developers going through hands-on industry
+            training. We love building websites, web apps, and interfaces that
+            are clean and easy to use.
+          </p>
+          <a href="#contact" class="btn btn-primary">Get Any Project →</a>
+        </div>
+
+        <!-- Right: skill progress bars (width % = visual fill, text % = label) -->
+        <div class="skill-bars">
+          <div class="skill-row">
+            <div class="skill-meta">
+              <span class="skill-name">JavaScript / ES6+</span
+              ><span class="skill-pct">90%</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 90%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-meta">
+              <span class="skill-name">UI/UX Design</span
+              ><span class="skill-pct">80%</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-meta">
+              <span class="skill-name">Web Development</span
+              ><span class="skill-pct">85%</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 85%"></div>
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-meta">
+              <span class="skill-name">API Integration</span
+              ><span class="skill-pct">75%</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 75%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         STATS SECTION
+         4-cell row of key numbers. Last cell is a text callout
+         instead of a number (intentional layout break for variety).
+         Update .stat-num values here when real metrics are available.
+    ===================================================== -->
+    <section id="stats" style="padding: 0">
+      <div class="stats-row">
+        <div class="stat-cell">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Apps Built</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">5+</div>
+          <div class="stat-label">Team Members</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Feature Complete</div>
+        </div>
+        <!-- 4th cell: text callout, left-aligned, not a stat number -->
+        <div class="stat-cell" style="text-align: left; padding-left: 36px">
+          <h3
+            style="
+              font-family: &quot;Poppins&quot;, sans-serif;
+              font-size: 1.5rem;
+              font-weight: 700;
+              color: var(--navy);
+            "
+          >
+            Great Achievements<br />In Our Capstone
+          </h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         TEAM SECTION
+         One .member-card per teammate. To add/remove a member,
+         copy a whole .member-card block and edit:
+           - avatar emoji
+           - name (<h4>) and role (<p class="role">)
+           - up to 3 .skill-tag chips
+           - GitHub link (href + visible text)
+    ===================================================== -->
+    <section id="team">
+      <div class="center">
+        <p class="section-label">Who We Are</p>
+        <h2 class="section-title">Meet the <span>Team</span></h2>
+        <div class="underline-accent"></div>
+      </div>
+
+      <div class="team-grid">
+        <!-- Member: Bhavya Kumar -->
+        <div class="member-card">
+          <div class="avatar">👨‍💻</div>
+          <h4>Bhavya Kumar</h4>
+          <p class="role">Frontend Developer</p>
+          <div class="member-skills">
+            <span class="skill-tag">DOM</span><span class="skill-tag">CSS</span
+            ><span class="skill-tag">API</span>
+          </div>
+          <a href="https://github.com/bhavyaku11" class="github-link"
+            >⭐github.com/bhavyaku11</a
+          >
+        </div>
+
+        <!-- Member: Dhruv Takale -->
+        <div class="member-card">
+          <div class="avatar">👨‍💻</div>
+          <h4>Dhruv Takale</h4>
+          <p class="role">State &amp; Logic</p>
+          <div class="member-skills">
+            <span class="skill-tag">JS</span><span class="skill-tag">CRUD</span
+            ><span class="skill-tag">Storage</span>
+          </div>
+          <a href="https://github.com/Mr-robot365" class="github-link"
+            >⭐github.com/Mr-robot365</a
+          >
+        </div>
+
+        <!-- Member: Nikita -->
+        <!-- TODO: GitHub link href is a placeholder ("https://github.com/")
+             and the visible text still reads "samkwon" — update both
+             to Nikita's real GitHub profile -->
+        <div class="member-card">
+          <div class="avatar">👨‍🎨</div>
+          <h4>Nikita</h4>
+          <p class="role">UI/UX Designer</p>
+          <div class="member-skills">
+            <span class="skill-tag">UI</span><span class="skill-tag">Figma</span
+            ><span class="skill-tag">CSS</span>
+          </div>
+          <a href="https://github.com/" class="github-link"
+            >⭐github.com/samkwon</a
+          >
+        </div>
+
+        <!-- Member: Safia Anjum -->
+        <div class="member-card">
+          <div class="avatar">👩‍🔬</div>
+          <h4>Safia Anjum</h4>
+          <p class="role">Frontend Developer</p>
+          <div class="member-skills">
+            <span class="skill-tag">HTML</span
+            ><span class="skill-tag">CSS</span
+            ><span class="skill-tag">JS</span>
+          </div>
+          <a href="https://github.com/Safiaanjum01" class="github-link"
+            >⭐github.com/Safiaanjum01</a
+          >
+        </div>
+
+        <!-- Member: Samarth Swami -->
+        <div class="member-card">
+          <div class="avatar">🧑‍💻</div>
+          <h4>Samarth Swami</h4>
+          <p class="role">Frontend Lead</p>
+          <div class="member-skills">
+            <span class="skill-tag">Git</span
+            ><span class="skill-tag">CI/CD</span
+            ><span class="skill-tag">PR</span>
+          </div>
+          <a href="https://github.com/Sam-X-Dev" class="github-link"
+            >⭐github.com/Sam-X-Dev</a
+          >
+        </div>
+
+        <!-- Member: Shreyansh -->
+        <div class="member-card">
+          <div class="avatar">🧑‍💻</div>
+          <h4>Shreyansh</h4>
+          <p class="role">Frontend Developer</p>
+          <div class="member-skills">
+            <span class="skill-tag">Git</span
+            ><span class="skill-tag">CI/CD</span
+            ><span class="skill-tag">PR</span>
+          </div>
+          <a href="https://github.com/SHREYYY3" class="github-link"
+            >⭐github.com/SHREYYY3</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         CONTACT SECTION
+         Plain layout form (no JS validation/submit logic wired
+         up yet — Project 1 in the handbook requires client-side
+         validation, so this needs an app.js handler before launch).
+    ===================================================== -->
+    <section id="contact">
+      <p class="section-label">Say Hello</p>
+      <h2 class="section-title">
+        Do You Have Any Projects?<br />Plz Say Hello
+      </h2>
+      <div
+        style="
+          width: 48px;
+          height: 4px;
+          background: rgba(255, 255, 255, 0.5);
+          border-radius: 2px;
+          margin: 0.7rem auto 0;
+        "
+      ></div>
+
+      <!-- TODO: no name/id attributes on inputs and no form handler yet —
+           add validation + submit logic in app.js -->
+      <div class="contact-form">
+        <input type="text" placeholder="Your Full Name" />
+        <input type="email" placeholder="Email Address" />
+        <input type="text" placeholder="Write Message" />
+        <button class="btn btn-white">Send Message →</button>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         FOOTER
+         4-column layout: brand/contact, services links,
+         newsletter signup, and a small "our members" avatar grid.
+         Bottom bar has copyright + legal links.
+    ===================================================== -->
+    <footer>
+      <div class="footer-main">
+        <!-- Column 1: brand, address, contact info, social icons -->
+        <div class="footer-brand">
+          <a href="#" class="logo" style="color: white; margin-bottom: 14px">
+            <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+              <rect width="36" height="36" rx="8" fill="#1A6FE8" />
+              <path
+                d="M10 22L15 17L10 12"
+                stroke="white"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M18 22H26"
+                stroke="white"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            CodeStrikes
+          </a>
+          <p>171/5, Tech Street, Bengaluru 560001</p>
+          <div class="footer-contact-item" style="margin-top: 10px">
+            📧 info@CodeStrikes.dev
+          </div>
+          <div class="footer-contact-item">📞 +91 98765 43210</div>
+          <!-- Social icons are placeholder links (href="#") — point these
+               to the team's real GitHub org / socials before submission -->
+          <div class="footer-social">
+            <a href="#" class="social-btn">🐙</a>
+            <a href="#" class="social-btn">𝕏</a>
+            <a href="#" class="social-btn">in</a>
+            <a href="#" class="social-btn">🎨</a>
+          </div>
+        </div>
+
+        <!-- Column 2: services list (static, decorative ✓ added via CSS ::before) -->
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">App Development</a></li>
+            <li><a href="#">UI/UX Design</a></li>
+            <li><a href="#">Graphic Design</a></li>
+            <li><a href="#">API Integration</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: newsletter signup (no submit handler wired yet) -->
+        <div class="footer-col">
+          <h4>Newsletters</h4>
+          <p
+            style="
+              font-size: 0.85rem;
+              margin-bottom: 12px;
+              color: rgba(255, 255, 255, 0.55);
+            "
+          >
+            Let's be friends and get interesting news about us
+          </p>
+          <div class="newsletter-input">
+            <input type="email" placeholder="Write Email" />
+            <button>Subscribe →</button>
+          </div>
+        </div>
+
+        <!-- Column 4: small grid of teammate avatar emojis -->
+        <div class="footer-col">
+          <h4>Our Members</h4>
+          <div class="footer-members-grid">
+            <div class="member-thumb">👨‍💻</div>
+            <div class="member-thumb">👩‍💻</div>
+            <div class="member-thumb">👨‍🎨</div>
+            <div class="member-thumb">👩‍🔬</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar: copyright + legal links -->
+      <div class="footer-bottom">
+        <span>© 2026 CodeStrikes. All Rights Reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Purchase</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- All interactive behavior (tab filtering, scroll-spy
+         nav highlighting, skill bar animation) lives in js/app.js -->
+    <script src="js/app.js"></script>
+  </body>
+</html>
