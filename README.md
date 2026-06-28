@@ -141,11 +141,9 @@ No installation or build step needed — this is a static site.
 | Name | Role | GitHub |
 |------|------|--------|
 | Bhavya Kumar | Frontend Developer | [@bhavyaku11](https://github.com/bhavyaku11) |
-| Dhruv Takale | State & Logic | [@Mr-robot365](https://github.com/Mr-robot365) |
 | Nikita | UI/UX Designer | [@Nikitha1727](https://github.com/Nikitha1727) |
 | Safia Anjum | Frontend Developer | [@Safiaanjum01](https://github.com/Safiaanjum01) |
 | Samarth Swami | Project Lead | [@Sam-X-Dev](https://github.com/Sam-X-Dev) |
-| Shreyansh | Frontend Developer | [@SHREYYY3](https://github.com/SHREYYY3) |
 
 > No team member works exclusively on HTML/CSS — every member must also defend JavaScript logic during the viva.
 
