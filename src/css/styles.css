@@ -199,7 +199,7 @@ nav {
   justify-content: center;
   align-items: center;
   z-index: 1;
-} 
+}
 
 /* The animated blob shape behind the floating badges.
    border-radius percentages create an organic (non-circular) shape,
@@ -317,6 +317,240 @@ nav {
   to {
     transform: translateX(10px) rotate(3deg);
   }
+}
+
+/* =====================================================
+   SHARED SECTION STYLES
+   Reusable classes used across multiple sections
+   (eyebrow labels, headings, underline accents, centering).
+===================================================== */
+section {
+  padding: 80px 5vw; /* consistent vertical rhythm between sections */
+}
+/* Small uppercase label above a section heading (e.g. "WHAT WE DO") */
+.section-label {
+  color: var(--blue);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.section-title span {
+  color: var(--blue); /* highlight word within a heading, e.g. "Meet the Team" */
+}
+/* Short blue underline rule used below centered headings */
+.underline-accent {
+  width: 48px;
+  height: 4px;
+  background: var(--blue);
+  border-radius: 2px;
+  margin: 0.7rem auto 0;
+}
+.center {
+  text-align: center;
+}
+
+/* =====================================================
+   SERVICES SECTION
+   4-column responsive card grid (auto-fit + minmax = wraps
+   down to fewer columns automatically on smaller screens).
+===================================================== */
+#services {
+  background: var(--white);
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+.service-card {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  text-align: center;
+  transition: all 0.25s;
+  cursor: default;
+}
+/* Hover: border turns blue + card lifts slightly with a soft shadow */
+.service-card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 8px 32px rgba(26, 111, 232, 0.12);
+  transform: translateY(-4px);
+}
+.service-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  background: var(--blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 2rem; /* sizes the emoji icon inside */
+}
+.service-card h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+}
+.service-card p {
+  font-size: 0.88rem;
+  color: var(--gray);
+  line-height: 1.65;
+}
+
+/* =====================================================
+   PORTFOLIO / PROJECTS SECTION
+   Filter tabs (.tab) + responsive project card grid.
+   Filtering behavior (show/hide by data-cat) lives in app.js.
+===================================================== */
+#portfolio {
+  background: var(--blue-pale); /* light blue tint distinguishes this section */
+}
+.filter-tabs {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap; /* tabs wrap to a new line on small screens */
+  margin: 32px 0;
+}
+.tab {
+  padding: 9px 22px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  color: var(--gray);
+}
+/* .active is toggled by setTab() in app.js when a tab is clicked */
+.tab.active,
+.tab:hover {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.project-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden; /* keeps thumbnail corners clipped to the card radius */
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(26, 111, 232, 0.15);
+}
+.project-thumb {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem; /* sizes the emoji placeholder icon */
+}
+/* Color variants for project thumbnails — c1/c2/c3/c4 cycle through
+   the project cards in the HTML. Some cards override these inline
+   with a custom gradient (see Quiz App / Team Portfolio cards). */
+.project-thumb.c1 {
+  background: linear-gradient(135deg, #ebf3ff, #c3deff);
+}
+.project-thumb.c2 {
+  background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+}
+.project-thumb.c3 {
+  background: linear-gradient(135deg, #f0fdf4, #bbf7d0);
+}
+.project-thumb.c4 {
+  background: linear-gradient(135deg, #fef9c3, #fde68a);
+}
+.project-info {
+  padding: 20px 22px;
+}
+.project-cat {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+.project-info h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* =====================================================
+   SKILLS SECTION
+   Two-column layout: copy on the left, animated progress
+   bars on the right. .bar-fill width is set inline per-skill
+   in the HTML (e.g. style="width: 90%").
+===================================================== */
+#skills {
+  background: var(--white);
+}
+.skills-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  margin-top: 48px;
+}
+.skills-text p {
+  color: var(--gray);
+  line-height: 1.75;
+  margin: 1rem 0 1.5rem;
+}
+.skill-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.skill-meta {
+  display: flex;
+  justify-content: space-between; /* skill name on left, % on right */
+  margin-bottom: 8px;
+}
+.skill-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.skill-pct {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--blue);
+}
+.bar-track {
+  width: 100%;
+  height: 8px;
+  background: var(--blue-light); /* empty/background track of the bar */
+  border-radius: 99px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--blue-mid));
+  border-radius: 99px;
+  transition: width 1s ease; /* animates smoothly if width is changed via JS */
 }
 
 /* =====================================================
